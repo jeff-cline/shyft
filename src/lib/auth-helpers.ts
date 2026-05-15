@@ -11,9 +11,11 @@ export async function getCurrentUser() {
 export async function requireUser() {
   const session = await auth();
   if (!session?.user) redirect("/mastery/login");
-  if (session.user.mustResetPassword) redirect("/mastery/force-reset");
   const user = await prisma.user.findUnique({ where: { id: session.user.id } });
   if (!user) redirect("/mastery/login");
+  // Authoritative check from DB, not the cached JWT — the JWT is stale immediately
+  // after force-reset until the next sign-in.
+  if (user.mustResetPassword) redirect("/mastery/force-reset");
   return user;
 }
 
