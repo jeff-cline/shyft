@@ -15,7 +15,13 @@ async function main() {
   for (const admin of SEED_ADMINS) {
     await prisma.user.upsert({
       where: { email: admin.email },
-      update: {},
+      update: {
+        // Idempotent: keep admin role + funnel status consistent on every re-seed,
+        // including after schema migrations where new columns defaulted to "lead".
+        role: "admin",
+        status: "customer",
+        paid: true,
+      },
       create: {
         email: admin.email,
         name: admin.name,
@@ -29,6 +35,13 @@ async function main() {
     });
     console.log(`Seeded admin: ${admin.email}`);
   }
+
+  // Belt-and-suspenders: any user with role=admin gets status corrected.
+  // Handles admins added via /admin/admins UI after migration.
+  await prisma.user.updateMany({
+    where: { role: "admin" },
+    data: { status: "customer", paid: true },
+  });
 
   // Default settings
   const defaults: Record<string, string> = {
