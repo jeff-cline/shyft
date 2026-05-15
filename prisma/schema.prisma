@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  email               String    @unique
+  passwordHash        String
+  name                String?
+  role                String    @default("customer") // admin | customer | affiliate
+  mustResetPassword   Boolean   @default(false)
+  currentTier         String    @default("none")     // mastery | private | retreat | fitness | none
+  upgradeShowPrivate  Boolean   @default(false)
+  upgradeShowRetreat  Boolean   @default(false)
+  upgradeShowFitness  Boolean   @default(false)
+  paid                Boolean   @default(false)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  notesAboutMe   Note[]        @relation("NoteTarget")
+  notesAuthored  Note[]        @relation("NoteAuthor")
+  chatThread     ChatMessage[] @relation("ChatThread")
+  chatAuthored   ChatMessage[] @relation("ChatAuthor")
+  affiliate      Affiliate?
+  referrals      Referral[]    @relation("ReferredUser")
+  subscription   Subscription?
+}
+
+model Lead {
+  id              String   @id @default(cuid())
+  name            String
+  email           String
+  phone           String?
+  message         String?
+  source          String   @default("mastery_form")
+  affiliateRef    String?
+  disposition     String   @default("new")
+  convertedUserId String?
+  createdAt       DateTime @default(now())
+}
+
+model Note {
+  id           String   @id @default(cuid())
+  targetUserId String
+  authorId     String
+  body         String
+  visibility   String   @default("private_admin") // private_admin | public_to_user
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  target       User     @relation("NoteTarget", fields: [targetUserId], references: [id], onDelete: Cascade)
+  author       User     @relation("NoteAuthor", fields: [authorId], references: [id])
+}
+
+model ChatMessage {
+  id           String    @id @default(cuid())
+  threadUserId String
+  authorId     String
+  body         String
+  readAt       DateTime?
+  createdAt    DateTime  @default(now())
+  thread       User      @relation("ChatThread", fields: [threadUserId], references: [id], onDelete: Cascade)
+  author       User      @relation("ChatAuthor", fields: [authorId], references: [id])
+}
+
+model Video {
+  id           String   @id @default(cuid())
+  title        String
+  sourceKind   String // upload | external_url
+  urlOrPath    String
+  tierRequired String   @default("mastery")
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model CalendarEvent {
+  id             String   @id @default(cuid())
+  title          String
+  description    String?
+  startsAt       DateTime
+  endsAt         DateTime
+  tierVisibility String // comma-separated: "mastery,private,retreat"
+  colorCode      String   @default("#D2691E")
+  createdAt      DateTime @default(now())
+}
+
+model Affiliate {
+  id           String     @id @default(cuid())
+  userId       String     @unique
+  referralCode String     @unique
+  payoutEmail  String?
+  createdAt    DateTime   @default(now())
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referrals    Referral[]
+}
+
+model Referral {
+  id               String    @id @default(cuid())
+  affiliateId      String
+  leadId           String?
+  referredUserId   String?
+  becameCustomerAt DateTime?
+  commissionDueOn  DateTime?
+  commissionPaidAt DateTime?
+  createdAt        DateTime  @default(now())
+  affiliate        Affiliate @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  referredUser     User?     @relation("ReferredUser", fields: [referredUserId], references: [id])
+}
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  userId               String    @unique
+  stripeSubscriptionId String?   @unique
+  stripeCustomerId     String?
+  status               String    @default("inactive")
+  tier                 String    @default("mastery")
+  currentPeriodEnd     DateTime?
+  user                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Setting {
+  key   String @id
+  value String
+}

@@ -1,9 +1,12 @@
 ---
 title: shYft MVP — Two-Domain Platform Design
 date: 2026-05-15
-status: proposed
+status: implemented (MVP)
 owner: jeff.cline@me.com
 ---
+
+> **Stack change vs. original proposal:** The DB+Auth+Storage layer was swapped from Supabase to **Prisma + SQLite (dev) / Postgres (prod) + Auth.js (credentials, JWT)** so the app runs the moment you clone it with zero external account setup. Same data model. Switch to Postgres in production by changing `DATABASE_URL` and the `provider` in `prisma/schema.prisma`.
+
 
 # shYft MVP — Design
 
