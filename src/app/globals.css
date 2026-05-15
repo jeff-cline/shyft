@@ -26,3 +26,28 @@
   font-weight: 900;
   font-family: var(--font-display);
 }
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.animate-marquee-left {
+  animation: marquee-left 65s linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right 55s linear infinite;
+}
+.marquee:hover .animate-marquee-left,
+.marquee:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+  }
+}
