@@ -29,23 +29,44 @@ export async function signupAction(formData: FormData): Promise<SignupResult> {
     return { ok: false, error: "Invalid email.", redirectTo: "/mastery/signup" };
   }
 
-  const existing = await prisma.user.findUnique({ where: { email } });
-  if (existing) {
-    return { ok: false, error: "An account with that email already exists. Log in instead.", redirectTo: "/mastery/signup" };
-  }
-
   const hash = await bcrypt.hash(password, 10);
-  await prisma.user.create({
-    data: {
-      email,
-      name,
-      passwordHash: hash,
-      role: "customer",
-      mustResetPassword: false,
-      currentTier: "none",
-      paid: false,
-    },
-  });
+  const existing = await prisma.user.findUnique({ where: { email } });
+
+  if (existing) {
+    // A lead with this email already exists (form submitter, no real password).
+    // Let them claim the account by setting their password. If the slot is already
+    // a real account (status=customer/affiliate/admin), refuse.
+    if (existing.status === "lead") {
+      await prisma.user.update({
+        where: { id: existing.id },
+        data: {
+          name: existing.name ?? name,
+          passwordHash: hash,
+          mustResetPassword: false,
+          status: "prospect", // signed up but hasn't paid yet
+        },
+      });
+    } else {
+      return {
+        ok: false,
+        error: "An account with that email already exists. Log in instead.",
+        redirectTo: "/mastery/signup",
+      };
+    }
+  } else {
+    await prisma.user.create({
+      data: {
+        email,
+        name,
+        passwordHash: hash,
+        role: "customer",
+        status: "prospect",
+        mustResetPassword: false,
+        currentTier: "none",
+        paid: false,
+      },
+    });
+  }
 
   try {
     await signIn("credentials", { email, password, redirect: false });

@@ -21,6 +21,7 @@ async function main() {
         name: admin.name,
         passwordHash: hash,
         role: "admin",
+        status: "customer",
         mustResetPassword: true,
         currentTier: "none",
         paid: true,

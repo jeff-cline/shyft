@@ -3,9 +3,10 @@ import { Shyft } from "@/components/brand/Shyft";
 import { Logo } from "@/components/brand/Logo";
 
 const items = [
-  { href: "/mastery/admin", label: "Inbox" },
+  { href: "/mastery/admin", label: "Overview" },
   { href: "/mastery/admin/leads", label: "Leads" },
   { href: "/mastery/admin/users", label: "Users" },
+  { href: "/mastery/admin/chat", label: "Chat" },
   { href: "/mastery/admin/videos", label: "Videos" },
   { href: "/mastery/admin/calendar", label: "Calendar" },
   { href: "/mastery/admin/admins", label: "Admins" },

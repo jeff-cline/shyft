@@ -12,9 +12,14 @@ model User {
   email               String    @unique
   passwordHash        String
   name                String?
+  phone               String?
   role                String    @default("customer") // admin | customer | affiliate
+  status              String    @default("lead")     // lead | prospect | customer | lost
+  leadSource          String?                          // free_gifts | mastery_form | doctor | affiliate_ref | direct
+  intakeMessage       String?                          // initial "what brought you here" text
   mustResetPassword   Boolean   @default(false)
   currentTier         String    @default("none")     // mastery | private | retreat | fitness | none
+  upgradeShowMastery  Boolean   @default(false)
   upgradeShowPrivate  Boolean   @default(false)
   upgradeShowRetreat  Boolean   @default(false)
   upgradeShowFitness  Boolean   @default(false)

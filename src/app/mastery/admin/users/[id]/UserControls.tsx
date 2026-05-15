@@ -7,12 +7,21 @@ import { updateUserControls } from "./actions";
 
 interface Initial {
   role: string;
+  status: string;
   currentTier: string;
   paid: boolean;
+  upgradeShowMastery: boolean;
   upgradeShowPrivate: boolean;
   upgradeShowRetreat: boolean;
   upgradeShowFitness: boolean;
 }
+
+const STATUS_OPTIONS: Array<{ value: string; label: string; tone: string }> = [
+  { value: "lead", label: "Lead", tone: "text-brand-coral" },
+  { value: "prospect", label: "Prospect", tone: "text-brand-y" },
+  { value: "customer", label: "Customer", tone: "text-brand-teal" },
+  { value: "lost", label: "Lost", tone: "opacity-50" },
+];
 
 export function UserControls({ userId, initial }: { userId: string; initial: Initial }) {
   const [state, setState] = useState(initial);
@@ -27,6 +36,9 @@ export function UserControls({ userId, initial }: { userId: string; initial: Ini
     });
   }
 
+  const statusTone =
+    STATUS_OPTIONS.find((s) => s.value === state.status)?.tone ?? "";
+
   return (
     <section className="grid md:grid-cols-2 gap-6 p-6 border border-ink/10 rounded-md bg-paper">
       <div>
@@ -35,7 +47,20 @@ export function UserControls({ userId, initial }: { userId: string; initial: Ini
         </h3>
 
         <div className="space-y-3">
-          <Row label="Role">
+          <Row label="Funnel Status">
+            <select
+              value={state.status}
+              onChange={(e) => set("status", e.target.value)}
+              className={`border border-ink/20 rounded px-2 py-1 bg-paper font-display ${statusTone}`}
+            >
+              {STATUS_OPTIONS.map((s) => (
+                <option key={s.value} value={s.value}>
+                  {s.label}
+                </option>
+              ))}
+            </select>
+          </Row>
+          <Row label="Role (permissions)">
             <select
               value={state.role}
               onChange={(e) => set("role", e.target.value)}
@@ -60,33 +85,45 @@ export function UserControls({ userId, initial }: { userId: string; initial: Ini
             </select>
           </Row>
           <Row label="Paid (unlock dashboard)">
-            <Toggle
-              checked={state.paid}
-              onChange={(v) => set("paid", v)}
-            />
+            <Toggle checked={state.paid} onChange={(v) => set("paid", v)} />
           </Row>
         </div>
       </div>
 
       <div>
         <h3 className="font-display text-xl mb-3">
-          <Shyft>Upgrade Tiles Visible to User</Shyft>
+          <Shyft>Offers Visible to This User</Shyft>
         </h3>
         <p className="text-sm opacity-70 mb-3">
           <Shyft>
-            When you flip a switch on, that upsell tile appears at the top of the user&apos;s
-            dashboard the next time they load it.
+            Flip a switch on to show that offer in the user&apos;s dashboard hero. Off by
+            default — guide them manually.
           </Shyft>
         </p>
         <div className="space-y-3">
+          <Row label={`Mastery (${TIERS.mastery.priceLabel}) — main`}>
+            <Toggle
+              checked={state.upgradeShowMastery}
+              onChange={(v) => set("upgradeShowMastery", v)}
+            />
+          </Row>
           <Row label={`Private Client (${TIERS.private.priceLabel})`}>
-            <Toggle checked={state.upgradeShowPrivate} onChange={(v) => set("upgradeShowPrivate", v)} />
+            <Toggle
+              checked={state.upgradeShowPrivate}
+              onChange={(v) => set("upgradeShowPrivate", v)}
+            />
           </Row>
           <Row label={`Annual Retreat (${TIERS.retreat.priceLabel})`}>
-            <Toggle checked={state.upgradeShowRetreat} onChange={(v) => set("upgradeShowRetreat", v)} />
+            <Toggle
+              checked={state.upgradeShowRetreat}
+              onChange={(v) => set("upgradeShowRetreat", v)}
+            />
           </Row>
-          <Row label={`Fitness (${TIERS.fitness.priceLabel})`}>
-            <Toggle checked={state.upgradeShowFitness} onChange={(v) => set("upgradeShowFitness", v)} />
+          <Row label={`Fitness (${TIERS.fitness.priceLabel}) — downsell`}>
+            <Toggle
+              checked={state.upgradeShowFitness}
+              onChange={(v) => set("upgradeShowFitness", v)}
+            />
           </Row>
         </div>
       </div>

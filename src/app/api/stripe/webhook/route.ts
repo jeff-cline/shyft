@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
         });
         await prisma.user.update({
           where: { id: userId },
-          data: { paid: true, currentTier: tierKey },
+          data: { paid: true, currentTier: tierKey, status: "customer" },
         });
       }
       break;
@@ -85,7 +85,10 @@ export async function POST(req: NextRequest) {
             currentPeriodEnd: new Date(sub.current_period_end * 1000),
           },
         });
-        await prisma.user.update({ where: { id: userId }, data: { paid: active } });
+        await prisma.user.update({
+          where: { id: userId },
+          data: { paid: active, ...(active ? { status: "customer" } : {}) },
+        });
       }
       break;
     }

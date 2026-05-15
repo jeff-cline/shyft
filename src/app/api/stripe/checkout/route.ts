@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
         name: name || null,
         passwordHash: hash,
         role: "customer",
+        status: "prospect",
         mustResetPassword: true,
         currentTier: "none",
         paid: false,

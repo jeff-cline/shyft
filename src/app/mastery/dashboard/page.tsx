@@ -180,9 +180,15 @@ export default async function DashboardPage() {
 async function UpgradeTiles({
   user,
 }: {
-  user: { upgradeShowPrivate: boolean; upgradeShowRetreat: boolean; upgradeShowFitness: boolean };
+  user: {
+    upgradeShowMastery: boolean;
+    upgradeShowPrivate: boolean;
+    upgradeShowRetreat: boolean;
+    upgradeShowFitness: boolean;
+  };
 }) {
-  const shown: Array<"private" | "retreat" | "fitness"> = [];
+  const shown: Array<"mastery" | "private" | "retreat" | "fitness"> = [];
+  if (user.upgradeShowMastery) shown.push("mastery");
   if (user.upgradeShowPrivate) shown.push("private");
   if (user.upgradeShowRetreat) shown.push("retreat");
   if (user.upgradeShowFitness) shown.push("fitness");
@@ -194,7 +200,7 @@ async function UpgradeTiles({
       <h2 className="font-display text-2xl mb-4">
         <Shyft>Available next steps</Shyft>
       </h2>
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         {shown.map((key) => {
           const tier = TIERS[key];
           return (
