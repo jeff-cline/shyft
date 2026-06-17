@@ -15,7 +15,7 @@ declare module "next-auth" {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: "jwt" },
-  pages: { signIn: "/mastery/login" },
+  pages: { signIn: "/doctor/login" },
   trustHost: true,
   providers: [
     Credentials({

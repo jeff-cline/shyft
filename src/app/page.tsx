@@ -35,7 +35,7 @@ export default function DevIndex() {
           <Shyft>Member Login</Shyft>
         </Link>
         <span className="opacity-30">·</span>
-        <Link href="/mastery/admin" className="font-display hover:text-brand-y">
+        <Link href="/doctor/admin" className="font-display hover:text-brand-y">
           <Shyft>Admin</Shyft>
         </Link>
       </div>

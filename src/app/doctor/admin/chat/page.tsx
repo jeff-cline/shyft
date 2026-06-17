@@ -26,7 +26,7 @@ export default async function AdminChatInbox() {
   return (
     <main className="max-w-6xl mx-auto px-6 py-10 space-y-6">
       <div>
-        <Link href="/mastery/admin" className="text-sm opacity-70 hover:text-brand-y">
+        <Link href="/doctor/admin" className="text-sm opacity-70 hover:text-brand-y">
           ← Back to overview
         </Link>
         <h1 className="font-display text-4xl md:text-5xl mt-2 mb-1">
@@ -46,7 +46,7 @@ export default async function AdminChatInbox() {
           {sorted.map((t) => (
             <li key={t.id}>
               <Link
-                href={`/mastery/admin/users/${t.id}`}
+                href={`/doctor/admin/users/${t.id}`}
                 className="flex items-center justify-between p-4 hover:bg-ink/5 transition-colors"
               >
                 <div className="min-w-0 flex-1">

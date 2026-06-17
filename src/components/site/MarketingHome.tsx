@@ -3,8 +3,18 @@ import { Logo } from "@/components/brand/Logo";
 import { Shyft } from "@/components/brand/Shyft";
 import { TestimonialMarquee } from "@/components/site/TestimonialMarquee";
 import { DOCTOR_BASE, MASTERY_BASE } from "@/lib/urls";
+import type { Brand } from "@/lib/brand";
 
-export default function DoctorLanding() {
+/**
+ * The shared marketing home rendered under both /doctor ("shYft Doctor") and
+ * /master ("Shyftmaster"). Editing this updates both domains at once — only the
+ * brand name token differs. Brand-Y treatment is kept in headings (h1/h2/h3) and
+ * the brand eyebrow; body copy renders plain.
+ *
+ * `kw` (optional) is the sanitized ad keyword for Dynamic Keyword Insertion; when
+ * present it replaces the first line of the hero H1.
+ */
+export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
   return (
     <main>
       {/* HERO */}
@@ -12,22 +22,18 @@ export default function DoctorLanding() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="font-display text-sm uppercase tracking-[0.3em] opacity-60 mb-4">
-              <Shyft>The shYft Doctor</Shyft>
+              <Shyft>{`The ${brand.name}`}</Shyft>
             </div>
             <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
               <span className="text-brand-coral">
-                <Shyft>SHYFT HAPPENS!</Shyft>
+                <Shyft>{kw || "SHYFT HAPPENS!"}</Shyft>
               </span>
               <br />
               <Shyft>Now what?</Shyft>
             </h1>
             <p className="text-xl md:text-2xl mb-10 opacity-85 max-w-lg">
-              <Shyft>
-                You felt it. The career, the marriage, the body, the soul — something moved.
-                You&apos;re not lost. You&apos;re between chapters. The next one starts with{" "}
-              </Shyft>
-              <span className="brand-y text-3xl">Y</span>
-              <Shyft>.</Shyft>
+              You felt it. The career, the marriage, the body, the soul — something moved.
+              You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <CTAButton href={`${DOCTOR_BASE}/book`} variant="primary">
@@ -49,7 +55,7 @@ export default function DoctorLanding() {
         <div className="max-w-5xl mx-auto px-6 grid sm:grid-cols-3 gap-4 text-center">
           <Stat label="Clients" value="100+" />
           <Stat label="Years" value="8" />
-          <Stat label="Promise" value="No script. No pitch." />
+          <Stat label="Promise" value="shYft will happen, guaranteed!" />
         </div>
       </section>
 
@@ -60,10 +66,8 @@ export default function DoctorLanding() {
             <Shyft>You&apos;re not broken. You&apos;re becoming.</Shyft>
           </h2>
           <p className="text-lg opacity-85">
-            <Shyft>
-              The world calls it burnout, divorce, midlife, exit, plateau, breakdown. We call it
-              a shYft. Same moment. Very different lens. We start there.
-            </Shyft>
+            The world calls it burnout, divorce, midlife, exit, plateau, breakdown. We call it
+            a shYft. Same moment. Very different lens. We start there.
           </p>
         </div>
       </section>
@@ -72,7 +76,7 @@ export default function DoctorLanding() {
       <section className="max-w-5xl mx-auto px-6 py-24">
         <div className="text-center mb-12">
           <div className="font-display text-sm uppercase tracking-[0.3em] opacity-60 mb-2">
-            <Shyft>What Happens on the Call</Shyft>
+            What Happens on the Call
           </div>
           <h2 className="font-display text-4xl md:text-5xl">
             <Shyft>Thirty minutes. No script.</Shyft>
@@ -89,9 +93,7 @@ export default function DoctorLanding() {
               <h3 className="font-display text-2xl mb-2">
                 <Shyft>{title}</Shyft>
               </h3>
-              <p className="opacity-80">
-                <Shyft>{body}</Shyft>
-              </p>
+              <p className="opacity-80">{body}</p>
             </div>
           ))}
         </div>
@@ -116,9 +118,7 @@ export default function DoctorLanding() {
             <h3 className="font-display text-3xl mb-3">
               <Shyft>{title}</Shyft>
             </h3>
-            <p className="opacity-75 text-lg">
-              <Shyft>{body}</Shyft>
-            </p>
+            <p className="opacity-75 text-lg">{body}</p>
           </div>
         ))}
       </section>
@@ -157,7 +157,7 @@ export default function DoctorLanding() {
             <Shyft>One conversation away.</Shyft>
           </h2>
           <p className="text-lg opacity-85">
-            <Shyft>Free. Thirty minutes. No script. No pitch. Pick a time that works.</Shyft>
+            Free. Thirty minutes. No script. No pitch. Pick a time that works.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
             <CTAButton href={`${DOCTOR_BASE}/book`} variant="primary">
@@ -179,9 +179,7 @@ function Stat({ label, value }: { label: string; value: string }) {
       <div className="font-display text-4xl md:text-5xl text-brand-y leading-none">
         <Shyft>{value}</Shyft>
       </div>
-      <div className="text-xs uppercase tracking-widest opacity-60 mt-2">
-        <Shyft>{label}</Shyft>
-      </div>
+      <div className="text-xs uppercase tracking-widest opacity-60 mt-2">{label}</div>
     </div>
   );
 }
@@ -193,9 +191,7 @@ function Faq({ q, a }: { q: string; a: string }) {
         <span><Shyft>{q}</Shyft></span>
         <span className="text-brand-y text-2xl transition-transform group-open:rotate-45">+</span>
       </summary>
-      <div className="px-4 pb-4 opacity-85">
-        <Shyft>{a}</Shyft>
-      </div>
+      <div className="px-4 pb-4 opacity-85">{a}</div>
     </details>
   );
 }

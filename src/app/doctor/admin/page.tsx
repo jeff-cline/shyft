@@ -41,7 +41,7 @@ export default async function AdminOverview() {
           </p>
         </div>
         <Link
-          href="/mastery/admin/chat"
+          href="/doctor/admin/chat"
           className="font-display text-sm px-4 py-2 rounded-md border-2 border-ink hover:bg-ink hover:text-paper transition-colors"
         >
           <Shyft>Open Chat Inbox →</Shyft>
@@ -54,7 +54,7 @@ export default async function AdminOverview() {
           label="Leads"
           value={String(stats.totalLeads)}
           accent="brand-coral"
-          href="/mastery/admin/leads"
+          href="/doctor/admin/leads"
         />
         <StatTile
           label="Customers (paid)"
@@ -196,7 +196,7 @@ export default async function AdminOverview() {
                   return (
                     <li key={u.id}>
                       <Link
-                        href={`/mastery/admin/users/${u.id}`}
+                        href={`/doctor/admin/users/${u.id}`}
                         className="p-3 flex items-center justify-between gap-3 hover:bg-ink/5"
                       >
                         <div className="min-w-0 flex-1">

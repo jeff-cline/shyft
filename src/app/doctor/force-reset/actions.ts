@@ -13,17 +13,17 @@ export interface ResetResult {
 export async function forceResetAction(formData: FormData): Promise<ResetResult> {
   const session = await auth();
   if (!session?.user) {
-    return { ok: false, error: "Not signed in.", redirectTo: "/mastery/login" };
+    return { ok: false, error: "Not signed in.", redirectTo: "/doctor/login" };
   }
 
   const password = String(formData.get("password") || "");
   const confirm = String(formData.get("confirm") || "");
 
   if (password.length < 8) {
-    return { ok: false, error: "Password must be at least 8 characters.", redirectTo: "/mastery/force-reset" };
+    return { ok: false, error: "Password must be at least 8 characters.", redirectTo: "/doctor/force-reset" };
   }
   if (password !== confirm) {
-    return { ok: false, error: "Passwords don't match.", redirectTo: "/mastery/force-reset" };
+    return { ok: false, error: "Passwords don't match.", redirectTo: "/doctor/force-reset" };
   }
 
   const hash = await bcrypt.hash(password, 10);

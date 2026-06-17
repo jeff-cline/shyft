@@ -42,7 +42,7 @@ export function LeadRow({
       <td className="px-3 py-2">
         {lead.userId ? (
           <Link
-            href={`/mastery/admin/users/${lead.userId}`}
+            href={`/doctor/admin/users/${lead.userId}`}
             className="font-medium text-ink hover:text-brand-y underline-offset-2 hover:underline"
           >
             {lead.name}

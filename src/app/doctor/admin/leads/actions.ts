@@ -9,6 +9,6 @@ export async function updateLeadDisposition(leadId: string, disposition: string)
   const allowed = ["new", "contacted", "booked", "joined", "lost"];
   if (!allowed.includes(disposition)) return { ok: false };
   await prisma.lead.update({ where: { id: leadId }, data: { disposition } });
-  revalidatePath("/mastery/admin/leads");
+  revalidatePath("/doctor/admin/leads");
   return { ok: true };
 }

@@ -3,21 +3,23 @@ import { Shyft } from "@/components/brand/Shyft";
 import { Logo } from "@/components/brand/Logo";
 
 const items = [
-  { href: "/mastery/admin", label: "Overview" },
-  { href: "/mastery/admin/leads", label: "Leads" },
-  { href: "/mastery/admin/users", label: "Users" },
-  { href: "/mastery/admin/chat", label: "Chat" },
-  { href: "/mastery/admin/videos", label: "Videos" },
-  { href: "/mastery/admin/calendar", label: "Calendar" },
-  { href: "/mastery/admin/admins", label: "Admins" },
-  { href: "/mastery/admin/settings", label: "Settings" },
+  { href: "/doctor/admin", label: "Overview" },
+  { href: "/doctor/admin/site-status", label: "Site Status" },
+  { href: "/doctor/admin/integrations", label: "Integrations" },
+  { href: "/doctor/admin/leads", label: "Leads" },
+  { href: "/doctor/admin/users", label: "Users" },
+  { href: "/doctor/admin/chat", label: "Chat" },
+  { href: "/doctor/admin/videos", label: "Videos" },
+  { href: "/doctor/admin/calendar", label: "Calendar" },
+  { href: "/doctor/admin/admins", label: "Admins" },
+  { href: "/doctor/admin/settings", label: "Settings" },
 ];
 
 export function AdminNav({ email }: { email: string }) {
   return (
     <header className="border-b border-ink/10 bg-paper sticky top-0 z-30">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between flex-wrap gap-3">
-        <Link href="/mastery/admin" className="flex items-center gap-3" aria-label="Admin home">
+        <Link href="/doctor/admin" className="flex items-center gap-3" aria-label="Admin home">
           <Logo />
           <span className="font-display text-lg opacity-70">
             <Shyft>Admin</Shyft>
@@ -38,7 +40,7 @@ export function AdminNav({ email }: { email: string }) {
           <span className="opacity-60 hidden md:inline">
             <Shyft>{email}</Shyft>
           </span>
-          <form action="/mastery/logout" method="post">
+          <form action="/doctor/logout" method="post">
             <button type="submit" className="font-display hover:text-brand-y">
               <Shyft>Sign Out</Shyft>
             </button>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import "./globals.css";
 import { SessionWrapper } from "@/components/SessionWrapper";
+import { TrackingTags } from "@/components/site/TrackingTags";
 
 const display = Anton({
   subsets: ["latin"],
@@ -22,10 +23,11 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body className="bg-paper text-ink antialiased">
+        <TrackingTags />
         <SessionWrapper>{children}</SessionWrapper>
       </body>
     </html>
