@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="transparent"/>
-  <text x="32" y="50" font-family="Impact, 'Arial Black', 'Anton', sans-serif" font-size="58" font-weight="900" fill="#D2691E" text-anchor="middle">Y</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#0f0f0f"/>
+  <text x="32" y="47" text-anchor="middle" font-family="Impact, 'Arial Black', Arial, sans-serif"
+        font-weight="900" font-size="48" fill="#D2691E">Y</text>
 </svg>

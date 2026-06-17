@@ -9,7 +9,7 @@ const SEED_ADMINS = [
 ];
 
 async function main() {
-  const seedPassword = process.env.SEED_ADMIN_PASSWORD || "ChangeMe!First-Login";
+  const seedPassword = process.env.SEED_ADMIN_PASSWORD || "TEMP!234";
   const hash = await bcrypt.hash(seedPassword, 10);
 
   for (const admin of SEED_ADMINS) {
@@ -55,6 +55,16 @@ async function main() {
     price_fitness_id: "",
     price_private_id: "",
     price_retreat_id: "",
+    // shYft Doctor hub (Phase 1)
+    doctor_live: "false",
+    ghl_inbound_webhook_url: "",
+    ga4_measurement_id: "",
+    google_ads_id: "",
+    google_ads_conversion_label: "",
+    head_tracking_snippet: "",
+    dki_enabled: "false",
+    dki_default_h1: "",
+    krystalore_photo_url: "/krystalore.jpg",
   };
   for (const [key, value] of Object.entries(defaults)) {
     await prisma.setting.upsert({
