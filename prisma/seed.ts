@@ -47,7 +47,7 @@ async function main() {
   const defaults: Record<string, string> = {
     payments_enabled: "false",
     booking_iframe_url: process.env.BOOKING_IFRAME_URL || "",
-    brand_y_hex: "#D2691E",
+    brand_y_hex: "#D4AF37",
     logo_url: "",
     stripe_pk: "",
     stripe_sk: "",

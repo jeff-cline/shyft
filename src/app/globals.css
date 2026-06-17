@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-y: #D2691E;
-  --color-brand-coral: #FF6B5B;
-  --color-brand-teal: #4ECDC4;
-  --color-ink: #0F1419;
-  --color-paper: #FAFAF7;
+  /* shYft Master brand palette */
+  --color-brand-y: #D4AF37;      /* rich metallic gold (the Y) */
+  --color-brand-coral: #00B7B2;  /* vivid cyan accent */
+  --color-brand-teal: #00B7B2;   /* vivid cyan accent */
+  --color-ink: #0a0a0a;          /* black */
+  --color-paper: #ffffff;        /* white */
 
   --font-display: var(--font-display-loaded), Impact, "Arial Black", sans-serif;
   --font-body: var(--font-body-loaded), system-ui, sans-serif;
@@ -81,13 +82,13 @@
 
 /* DKI keyword question mark — alternating color, blink + glow */
 @keyframes kw-qmark {
-  0%   { color: #FF6B5B; text-shadow: 0 0 6px #FF6B5B, 0 0 14px #FF6B5B; opacity: 1; }
+  0%   { color: #00B7B2; text-shadow: 0 0 6px #00B7B2, 0 0 14px #00B7B2; opacity: 1; }
   20%  { opacity: 0.25; }
   35%  { opacity: 1; }
-  50%  { color: #4ECDC4; text-shadow: 0 0 8px #4ECDC4, 0 0 20px #4ECDC4; opacity: 1; }
+  50%  { color: #D4AF37; text-shadow: 0 0 8px #D4AF37, 0 0 20px #D4AF37; opacity: 1; }
   70%  { opacity: 0.3; }
   85%  { opacity: 1; }
-  100% { color: #D2691E; text-shadow: 0 0 6px #D2691E, 0 0 14px #D2691E; opacity: 1; }
+  100% { color: #00B7B2; text-shadow: 0 0 6px #00B7B2, 0 0 14px #00B7B2; opacity: 1; }
 }
 .kw-glow {
   display: inline-block;
@@ -95,5 +96,5 @@
   animation: kw-qmark 2.2s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .kw-glow { animation: none; color: #FF6B5B; }
+  .kw-glow { animation: none; color: #D4AF37; }
 }

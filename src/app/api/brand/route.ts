@@ -15,7 +15,7 @@ export async function GET() {
   return NextResponse.json(
     {
       logo_url: settings.logo_url || "",
-      brand_y_hex: settings.brand_y_hex || "#D2691E",
+      brand_y_hex: settings.brand_y_hex || "#D4AF37",
     },
     {
       headers: {
