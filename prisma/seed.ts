@@ -66,6 +66,7 @@ async function main() {
     dki_default_h1: "",
     krystalore_photo_url: "/krystalore.jpg",
     lead_api_key: "",
+    notify_emails: "jeff.cline@me.com,krystalore@crewsbeyondlimitsconsulting.com",
   };
   for (const [key, value] of Object.entries(defaults)) {
     await prisma.setting.upsert({

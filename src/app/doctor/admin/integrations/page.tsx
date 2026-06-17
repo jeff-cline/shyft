@@ -11,6 +11,7 @@ const KEYS = [
   "dki_enabled",
   "dki_default_h1",
   "lead_api_key",
+  "notify_emails",
 ];
 
 export default async function IntegrationsAdmin() {

@@ -96,6 +96,19 @@ export function IntegrationsForm({ initial }: { initial: Record<string, string> 
         />
       </Section>
 
+      <Section title="Email Notifications">
+        <Instructions>
+          Who gets emailed when a new lead comes in (e.g. a Free Breakthrough Call request).
+          Comma-separated. Sent via Zapmail (configured in the server environment).
+        </Instructions>
+        <TextField
+          label="Notify these emails"
+          help="Comma-separated list of recipients."
+          value={state.notify_emails || ""}
+          onChange={(v) => set("notify_emails", v)}
+        />
+      </Section>
+
       <Section title="Lead Intake API">
         <Instructions>
           Let other sites post leads into shYft (they&apos;ll auto-forward to GoHighLevel above).
