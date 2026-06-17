@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { randomBytes } from "node:crypto";
 import { prisma } from "@/lib/db";
+import { forwardLeadToGHL } from "@/lib/integrations";
 
 export interface LeadInput {
   name: string;
@@ -85,6 +86,16 @@ export async function createLead(input: LeadInput) {
       disposition: "new",
       convertedUserId: user.id,
     },
+  });
+
+  // Forward to GoHighLevel for drip marketing (no-op if no webhook configured).
+  await forwardLeadToGHL({
+    name: input.name,
+    email,
+    phone: input.phone,
+    message: input.message,
+    source,
+    affiliateRef: input.affiliateRef,
   });
 
   return { lead, user };
