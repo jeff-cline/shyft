@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const DOCTOR_HOSTS = new Set(["shyftdoctor.com", "www.shyftdoctor.com"]);
+const MASTER_HOSTS = new Set(["shyftmaster.com", "www.shyftmaster.com"]);
 const MASTERY_HOSTS = new Set(["shyftmastery.com", "www.shyftmastery.com"]);
 
 export function middleware(req: NextRequest) {
@@ -12,6 +13,7 @@ export function middleware(req: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/doctor") ||
+    pathname.startsWith("/master") ||
     pathname.startsWith("/mastery") ||
     pathname === "/favicon.svg" ||
     pathname === "/favicon.ico" ||
@@ -23,6 +25,12 @@ export function middleware(req: NextRequest) {
   if (DOCTOR_HOSTS.has(host)) {
     const url = req.nextUrl.clone();
     url.pathname = `/doctor${pathname === "/" ? "" : pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
+  if (MASTER_HOSTS.has(host)) {
+    const url = req.nextUrl.clone();
+    url.pathname = `/master${pathname === "/" ? "" : pathname}`;
     return NextResponse.rewrite(url);
   }
 
