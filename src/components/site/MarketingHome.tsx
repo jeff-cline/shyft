@@ -20,13 +20,16 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
       {/* HERO */}
       <section className="relative max-w-6xl mx-auto px-6 pt-20 pb-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="hero-cq">
             <div className="font-display text-sm uppercase tracking-[0.3em] opacity-60 mb-4">
               <Shyft>{`The ${brand.name}`}</Shyft>
             </div>
             <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
               {kw && (
-                <span className="block text-brand-y">
+                <span
+                  className="block text-brand-y whitespace-nowrap leading-none"
+                  style={{ fontSize: `min(1em, calc(100cqw / ${((kw.length + 1) * 0.66).toFixed(2)}))` }}
+                >
                   <Shyft>{kw}</Shyft>
                   <span className="kw-glow">?</span>
                 </span>
