@@ -73,3 +73,22 @@
     animation: none;
   }
 }
+
+/* DKI keyword question mark — alternating color, blink + glow */
+@keyframes kw-qmark {
+  0%   { color: #FF6B5B; text-shadow: 0 0 6px #FF6B5B, 0 0 14px #FF6B5B; opacity: 1; }
+  20%  { opacity: 0.25; }
+  35%  { opacity: 1; }
+  50%  { color: #4ECDC4; text-shadow: 0 0 8px #4ECDC4, 0 0 20px #4ECDC4; opacity: 1; }
+  70%  { opacity: 0.3; }
+  85%  { opacity: 1; }
+  100% { color: #D2691E; text-shadow: 0 0 6px #D2691E, 0 0 14px #D2691E; opacity: 1; }
+}
+.kw-glow {
+  display: inline-block;
+  margin-left: 0.05em;
+  animation: kw-qmark 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kw-glow { animation: none; color: #FF6B5B; }
+}

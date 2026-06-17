@@ -28,6 +28,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
               {kw && (
                 <span className="block text-brand-y">
                   <Shyft>{kw}</Shyft>
+                  <span className="kw-glow">?</span>
                 </span>
               )}
               <span className="text-brand-coral">
