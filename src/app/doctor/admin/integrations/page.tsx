@@ -10,6 +10,7 @@ const KEYS = [
   "head_tracking_snippet",
   "dki_enabled",
   "dki_default_h1",
+  "lead_api_key",
 ];
 
 export default async function IntegrationsAdmin() {

@@ -65,6 +65,7 @@ async function main() {
     dki_enabled: "false",
     dki_default_h1: "",
     krystalore_photo_url: "/krystalore.jpg",
+    lead_api_key: "",
   };
   for (const [key, value] of Object.entries(defaults)) {
     await prisma.setting.upsert({

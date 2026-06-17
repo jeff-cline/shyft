@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Shyft } from "@/components/brand/Shyft";
-import { saveIntegrations } from "./actions";
+import { saveIntegrations, generateLeadApiKey } from "./actions";
 
 export function IntegrationsForm({ initial }: { initial: Record<string, string> }) {
   const [state, setState] = useState<Record<string, string>>(initial);
@@ -94,6 +94,46 @@ export function IntegrationsForm({ initial }: { initial: Record<string, string> 
           value={state.dki_default_h1 || ""}
           onChange={(v) => set("dki_default_h1", v)}
         />
+      </Section>
+
+      <Section title="Lead Intake API">
+        <Instructions>
+          Let other sites post leads into shYft (they&apos;ll auto-forward to GoHighLevel above).
+          Generate a key, then share the docs at{" "}
+          <a href="/api" target="_blank" className="underline text-brand-y">shyftdoctor.com/api</a>{" "}
+          with the other site. They send <code>POST</code> requests to{" "}
+          <code>https://shyftdoctor.com/api/leads</code> with the key in an{" "}
+          <code>x-api-key</code> header. Keep this key secret; regenerate to revoke old access.
+        </Instructions>
+        <div>
+          <label className="block font-display text-base mb-1">
+            <Shyft>Lead API Key</Shyft>
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              readOnly
+              value={state.lead_api_key || ""}
+              placeholder="No key yet — click Generate"
+              className="w-full border border-ink/20 rounded px-3 py-2 bg-paper outline-none font-mono text-sm"
+            />
+            <button
+              type="button"
+              onClick={() =>
+                startTransition(async () => {
+                  const r = await generateLeadApiKey();
+                  if (r.key) set("lead_api_key", r.key);
+                })
+              }
+              className="shrink-0 bg-ink text-paper font-display px-4 rounded hover:bg-brand-y transition-colors"
+            >
+              Generate
+            </button>
+          </div>
+          <p className="text-xs opacity-60 mt-1">
+            Generating a new key immediately replaces the old one (saved instantly).
+          </p>
+        </div>
       </Section>
 
       <div className="flex items-center justify-between">
