@@ -20,8 +20,14 @@ export async function requireUser() {
 }
 
 export async function requireAdmin() {
-  const user = await requireUser();
-  if (user.role !== "admin") redirect("/mastery/dashboard");
+  // Admins live on shyftdoctor.com — route unauthenticated/unprivileged access to the
+  // doctor-side login/reset, independent of the member funnel's /mastery auth pages.
+  const session = await auth();
+  if (!session?.user) redirect("/doctor/login");
+  const user = await prisma.user.findUnique({ where: { id: session.user.id } });
+  if (!user) redirect("/doctor/login");
+  if (user.mustResetPassword) redirect("/doctor/force-reset");
+  if (user.role !== "admin") redirect("/doctor/login");
   return user;
 }
 

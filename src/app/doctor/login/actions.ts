@@ -16,7 +16,7 @@ export async function loginAction(formData: FormData): Promise<LoginResult> {
   const callbackUrl = String(formData.get("callbackUrl") || "");
 
   if (!email || !password) {
-    return { ok: false, error: "Email and password required.", redirectTo: "/mastery/login" };
+    return { ok: false, error: "Email and password required.", redirectTo: "/doctor/login" };
   }
 
   try {
@@ -26,7 +26,7 @@ export async function loginAction(formData: FormData): Promise<LoginResult> {
       return {
         ok: false,
         error: "Invalid email or password.",
-        redirectTo: "/mastery/login",
+        redirectTo: "/doctor/login",
       };
     }
     throw err;
@@ -34,11 +34,11 @@ export async function loginAction(formData: FormData): Promise<LoginResult> {
 
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
-    return { ok: false, error: "Account not found.", redirectTo: "/mastery/login" };
+    return { ok: false, error: "Account not found.", redirectTo: "/doctor/login" };
   }
 
   if (user.mustResetPassword) {
-    return { ok: true, redirectTo: "/mastery/force-reset" };
+    return { ok: true, redirectTo: "/doctor/force-reset" };
   }
 
   if (callbackUrl && callbackUrl.startsWith("/")) {

@@ -18,7 +18,7 @@ export default async function AffiliateLayout({ children }: { children: React.Re
           <div className="flex items-center gap-4 text-sm">
             <span className="opacity-60 hidden sm:inline">{user.email}</span>
             {user.role === "admin" && (
-              <Link href="/mastery/admin" className="font-display hover:text-brand-y">
+              <Link href="/doctor/admin" className="font-display hover:text-brand-y">
                 <Shyft>Admin</Shyft>
               </Link>
             )}

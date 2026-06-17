@@ -21,7 +21,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
               <Shyft>{user.email}</Shyft>
             </span>
             {user.role === "admin" && (
-              <Link href="/mastery/admin" className="font-display hover:text-brand-y">
+              <Link href="/doctor/admin" className="font-display hover:text-brand-y">
                 <Shyft>Admin</Shyft>
               </Link>
             )}

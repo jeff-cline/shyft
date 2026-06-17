@@ -35,7 +35,7 @@ export async function updateUserControls(userId: string, payload: UserControlPay
       upgradeShowFitness: payload.upgradeShowFitness,
     },
   });
-  revalidatePath(`/mastery/admin/users/${userId}`);
+  revalidatePath(`/doctor/admin/users/${userId}`);
   return { ok: true };
 }
 

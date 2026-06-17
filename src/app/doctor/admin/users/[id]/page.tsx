@@ -45,7 +45,7 @@ export default async function UserDetail({ params }: PageProps) {
   return (
     <main className="max-w-6xl mx-auto px-6 py-10 space-y-8">
       <div>
-        <Link href="/mastery/admin/leads" className="text-sm opacity-70 hover:text-brand-y">
+        <Link href="/doctor/admin/leads" className="text-sm opacity-70 hover:text-brand-y">
           ← Back to leads
         </Link>
         <div className="mt-2 flex flex-wrap items-baseline gap-3">

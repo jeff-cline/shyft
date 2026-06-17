@@ -41,7 +41,7 @@ export default async function UsersPage() {
             {users.map((u) => (
               <tr key={u.id} className="border-b border-ink/10 last:border-b-0 hover:bg-ink/5">
                 <td className="px-3 py-2">
-                  <Link href={`/mastery/admin/users/${u.id}`} className="block">
+                  <Link href={`/doctor/admin/users/${u.id}`} className="block">
                     <div className="font-medium">{u.name || "(no name)"}</div>
                     <div className="text-xs opacity-60">{u.email}</div>
                   </Link>
