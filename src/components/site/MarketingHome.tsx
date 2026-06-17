@@ -18,8 +18,8 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
   return (
     <main>
       {/* HERO */}
-      <section className="relative max-w-6xl mx-auto px-6 pt-20 pb-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="relative max-w-7xl mx-auto px-6 pt-20 pb-24">
+        <div className="grid md:grid-cols-[1fr_1.25fr] gap-12 items-center">
           <div className="hero-cq">
             <div className="font-display text-sm uppercase tracking-[0.3em] opacity-60 mb-4">
               <Shyft>{`The ${brand.name}`}</Shyft>

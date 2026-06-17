@@ -8,8 +8,8 @@
   --color-ink: #0a0a0a;          /* black */
   --color-paper: #ffffff;        /* white */
 
-  --font-display: var(--font-display-loaded), Impact, "Arial Black", sans-serif;
-  --font-body: var(--font-body-loaded), system-ui, sans-serif;
+  --font-display: var(--font-display-loaded), "Archivo Black", Impact, "Arial Black", sans-serif;
+  --font-body: "Proxima Nova", var(--font-body-loaded), "Montserrat", system-ui, sans-serif;
 }
 
 @layer base {

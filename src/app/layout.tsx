@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Archivo_Black, Montserrat } from "next/font/google";
 import "./globals.css";
 import { SessionWrapper } from "@/components/SessionWrapper";
 import { TrackingTags } from "@/components/site/TrackingTags";
 
-const display = Anton({
+// Display headings: Archivo Black. (Real "Proxima Nova" is licensed via Adobe; Montserrat
+// is loaded as the closest free render-fallback for the body/subtext.)
+const display = Archivo_Black({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-display-loaded",
   display: "swap",
 });
 
-const body = Inter({
+const body = Montserrat({
   subsets: ["latin"],
   variable: "--font-body-loaded",
   display: "swap",
@@ -20,7 +22,7 @@ const body = Inter({
 export const metadata: Metadata = {
   title: "shYft — Make the shYft",
   description: "Shyft Happens. Now what?",
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/shyft-y-logo.png" },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

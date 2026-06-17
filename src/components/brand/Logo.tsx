@@ -12,7 +12,7 @@ export function Logo({ variant = "small", className = "" }: LogoProps) {
       <img
         src={SRC}
         alt="The shYft Master — When Shyft Hits the Fan"
-        className={`w-full max-w-md mx-auto ${className}`}
+        className={`w-full max-w-2xl mx-auto ${className}`}
       />
     );
   }
