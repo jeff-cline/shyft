@@ -131,3 +131,9 @@ model Setting {
   key   String @id
   value String
 }
+
+model KeywordHit {
+  keyword   String   @id
+  count     Int      @default(0)
+  updatedAt DateTime @updatedAt
+}

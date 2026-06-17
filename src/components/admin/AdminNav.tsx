@@ -6,6 +6,7 @@ const items = [
   { href: "/doctor/admin", label: "Overview" },
   { href: "/doctor/admin/site-status", label: "Site Status" },
   { href: "/doctor/admin/integrations", label: "Integrations" },
+  { href: "/doctor/admin/keywords", label: "Keyword Cloud" },
   { href: "/doctor/admin/leads", label: "Leads" },
   { href: "/doctor/admin/users", label: "Users" },
   { href: "/doctor/admin/chat", label: "Chat" },

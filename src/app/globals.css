@@ -51,3 +51,25 @@
     animation: none;
   }
 }
+
+/* Rotating keyword cloud (admin dashboard) */
+@keyframes kw-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes kw-orbit-rev {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+.kw-ring {
+  animation: kw-orbit 36s linear infinite;
+}
+.kw-word-rev {
+  animation: kw-orbit-rev 36s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kw-ring,
+  .kw-word-rev {
+    animation: none;
+  }
+}

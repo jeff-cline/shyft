@@ -3,6 +3,7 @@ import { BRANDS } from "@/lib/brand";
 import { isDoctorLive } from "@/lib/site-status";
 import { getSetting, getSettings } from "@/lib/settings";
 import { sanitizeKeyword } from "@/lib/dki";
+import { recordKeywordHit } from "@/lib/keywords";
 import { GraduatedSplash } from "@/components/site/GraduatedSplash";
 
 // Graduated state is read from the DB per request — never prerender it.
@@ -19,8 +20,10 @@ export default async function MasterLanding({
     return <GraduatedSplash photo={photo} doctorUrl="https://shyftdoctor.com/" />;
   }
   const { kw } = await searchParams;
+  const sanitized = sanitizeKeyword(kw);
+  if (sanitized) await recordKeywordHit(sanitized);
   const s = await getSettings(["dki_enabled", "dki_default_h1"]);
   const keyword =
-    s.dki_enabled === "true" ? sanitizeKeyword(kw) ?? (s.dki_default_h1 || undefined) : undefined;
+    s.dki_enabled === "true" ? sanitized ?? (s.dki_default_h1 || undefined) : undefined;
   return <MarketingHome brand={BRANDS.master} kw={keyword} />;
 }

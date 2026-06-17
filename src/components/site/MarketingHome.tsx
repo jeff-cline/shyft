@@ -25,8 +25,13 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
               <Shyft>{`The ${brand.name}`}</Shyft>
             </div>
             <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
+              {kw && (
+                <span className="block text-brand-y">
+                  <Shyft>{kw}</Shyft>
+                </span>
+              )}
               <span className="text-brand-coral">
-                <Shyft>{kw || "SHYFT HAPPENS!"}</Shyft>
+                <Shyft>SHYFT HAPPENS!</Shyft>
               </span>
               <br />
               <Shyft>Now what?</Shyft>
