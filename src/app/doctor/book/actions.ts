@@ -2,7 +2,6 @@
 
 import { createLead } from "@/lib/leads";
 import { getSetting } from "@/lib/settings";
-import { sendNotificationEmail } from "@/lib/email";
 
 export interface BookingResult {
   ok: boolean;
@@ -41,22 +40,7 @@ export async function submitBreakthroughCall(formData: FormData): Promise<Bookin
     source: "Free Breakthrough Call",
   });
 
-  // 2. Notify Krystalore + Jeff (best-effort)
-  await sendNotificationEmail(
-    `New Free Breakthrough Call — ${name}`,
-    [
-      `A new Free Breakthrough Call request just came in:`,
-      ``,
-      `Name:     ${name}`,
-      `Email:    ${email}`,
-      `Phone:    ${phone || "—"}`,
-      `Location: ${location || "—"}`,
-      ``,
-      `Source: Free Breakthrough Call`,
-    ].join("\n")
-  );
-
-  // 3. Redirect to the real booking page
+  // 2. Redirect to the real booking page (lead notification is handled centrally by createLead).
   const redirectTo = (await getSetting("booking_iframe_url"))?.trim() || BOOKING_FALLBACK;
   return { ok: true, redirectTo };
 }

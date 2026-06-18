@@ -1,7 +1,7 @@
 import { getSettings } from "@/lib/settings";
 import { sendViaZapmail, zapmailConfigured } from "@/lib/zapmail";
 
-const DEFAULT_RECIPIENTS = "jeff.cline@me.com,krystalore@crewsbeyondlimitsconsulting.com";
+const DEFAULT_RECIPIENTS = "krystalore@thecrewscoach.com,jeff.cline@me.com";
 
 function escapeHtml(s: string): string {
   return s

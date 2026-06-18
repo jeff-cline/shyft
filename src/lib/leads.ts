@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { randomBytes } from "node:crypto";
 import { prisma } from "@/lib/db";
 import { forwardLeadToGHL } from "@/lib/integrations";
+import { sendNotificationEmail } from "@/lib/email";
 
 export interface LeadInput {
   name: string;
@@ -97,6 +98,26 @@ export async function createLead(input: LeadInput) {
     source,
     affiliateRef: input.affiliateRef,
   });
+
+  // Email Krystalore + Jeff for every lead regardless of source. Best-effort only:
+  // notification failures must not break CRM capture or existing form flows.
+  try {
+    await sendNotificationEmail(
+      `New lead: ${input.name} — ${source}`,
+      [
+        `A new lead was captured in ShYft Doctor:`,
+        ``,
+        `Name:    ${input.name}`,
+        `Email:   ${email}`,
+        `Phone:   ${input.phone || "—"}`,
+        `Source:  ${source}`,
+        `Message: ${input.message || "—"}`,
+        input.affiliateRef ? `Ref:     ${input.affiliateRef}` : "",
+      ].filter(Boolean).join("\n")
+    );
+  } catch (err) {
+    console.error("[email] lead notification failed:", err);
+  }
 
   return { lead, user };
 }
