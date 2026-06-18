@@ -10,13 +10,17 @@ interface SiteNavProps {
 export function SiteNav({ loginHref, homeHref = "/" }: SiteNavProps) {
   return (
     <header className="border-b border-ink/10 bg-paper/85 backdrop-blur sticky top-0 z-30">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href={homeHref} aria-label="Home">
-          <Logo />
+      {/* ~1 inch tall; the Y-mark fills the full nav height in the upper-left */}
+      <div className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
+        <Link href={homeHref} aria-label="Home" className="h-full py-1.5 block">
+          <Logo variant="mark" />
         </Link>
         <nav className="flex items-center gap-6 text-sm">
           {loginHref && (
-            <Link href={loginHref} className="font-display text-base hover:text-brand-y transition-colors">
+            <Link
+              href={loginHref}
+              className="font-display text-base hover:text-brand-y transition-colors"
+            >
               <Shyft>Member Login</Shyft>
             </Link>
           )}

@@ -33,6 +33,16 @@
   container-type: inline-size;
 }
 
+/* Premium metallic-gold headline treatment, matching the logo's gold lettering */
+.text-gold-metallic {
+  background: linear-gradient(176deg, #FBE9A0 0%, #E6C45A 28%, #D4AF37 50%, #A87C18 74%, #F0D77E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(212, 175, 55, 0.35));
+}
+
 @keyframes marquee-left {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

@@ -18,44 +18,48 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
   return (
     <main>
       {/* HERO */}
-      <section className="relative max-w-7xl mx-auto px-6 pt-20 pb-24">
-        <div className="grid md:grid-cols-[1fr_1.25fr] gap-12 items-center">
-          <div className="hero-cq">
-            <div className="font-display text-sm uppercase tracking-[0.3em] opacity-60 mb-4">
-              <Shyft>{`The ${brand.name}`}</Shyft>
-            </div>
-            <h1 className="font-display text-6xl md:text-8xl leading-[0.95] mb-6">
-              {kw && (
-                <span
-                  className="block text-brand-y whitespace-nowrap leading-none"
-                  style={{ fontSize: `min(1em, calc(100cqw / ${((kw.length + 1) * 0.66).toFixed(2)}))` }}
-                >
-                  <Shyft>{kw}</Shyft>
-                  <span className="kw-glow">?</span>
-                </span>
-              )}
-              <span className="text-brand-coral">
-                <Shyft>SHYFT HAPPENS!</Shyft>
-              </span>
-              <br />
-              <Shyft>Now what?</Shyft>
-            </h1>
-            <p className="text-xl md:text-2xl mb-10 opacity-85 max-w-lg">
-              You felt it. The career, the marriage, the body, the soul — something moved.
-              You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <CTAButton href={`${DOCTOR_BASE}/book`} variant="primary">
-                Free Breakthrough Call
-              </CTAButton>
-              <CTAButton href={`${MASTERY_BASE}/get-started`} variant="secondary">
-                I&apos;m Ready to shYft
-              </CTAButton>
-            </div>
-          </div>
-          <div className="flex justify-center">
+      <section className="relative pt-8 pb-12">
+        <div className="hero-cq max-w-4xl mx-auto px-6 text-center">
+          {/* Logo first */}
+          <div className="flex justify-center mb-4">
             <Logo variant="hero" />
           </div>
+
+          {/* Premium headline */}
+          <h1 className="font-display text-6xl md:text-8xl leading-[0.92]">
+            {kw && (
+              <span
+                className="block text-brand-y whitespace-nowrap leading-none mb-1"
+                style={{ fontSize: `min(1em, calc(100cqw / ${((kw.length + 1) * 0.66).toFixed(2)}))` }}
+              >
+                <Shyft>{kw}</Shyft>
+                <span className="kw-glow">?</span>
+              </span>
+            )}
+            <span className="block text-gold-metallic">SHYFT HAPPENS!</span>
+            <span className="block text-2xl md:text-4xl text-ink/70 mt-3">Now what?</span>
+          </h1>
+
+          <p className="text-lg md:text-xl opacity-80 max-w-2xl mx-auto mt-6">
+            You felt it. The career, the marriage, the body, the soul — something moved.
+            You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
+          </p>
+        </div>
+
+        {/* Full-width split call-to-action bar */}
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-px bg-ink/10">
+          <a
+            href={`${DOCTOR_BASE}/book`}
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-y text-ink hover:bg-ink hover:text-paper transition-colors"
+          >
+            Free Breakthrough Call
+          </a>
+          <a
+            href={`${MASTERY_BASE}/get-started`}
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-ink text-paper hover:bg-brand-y hover:text-ink transition-colors"
+          >
+            I&apos;m Ready to shYft
+          </a>
         </div>
       </section>
 
