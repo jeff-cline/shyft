@@ -1,4 +1,3 @@
-import { CTAButton } from "@/components/brand/CTAButton";
 import { Logo } from "@/components/brand/Logo";
 import { Shyft } from "@/components/brand/Shyft";
 import { TestimonialMarquee } from "@/components/site/TestimonialMarquee";
@@ -120,9 +119,12 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
           ))}
         </div>
         <div className="text-center mt-12">
-          <CTAButton href={`${DOCTOR_BASE}/book`} variant="primary">
+          <a
+            href={`${DOCTOR_BASE}/book`}
+            className="inline-block font-display text-lg bg-ink text-brand-y px-8 py-4 rounded-md hover:bg-brand-y hover:text-ink transition-colors [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]"
+          >
             Book My Free Call
-          </CTAButton>
+          </a>
         </div>
       </section>
 
