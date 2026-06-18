@@ -1,5 +1,4 @@
 import { Logo } from "@/components/brand/Logo";
-import { Shyft } from "@/components/brand/Shyft";
 import { TestimonialMarquee } from "@/components/site/TestimonialMarquee";
 import { DOCTOR_BASE, MASTERY_BASE } from "@/lib/urls";
 import type { Brand } from "@/lib/brand";
@@ -39,10 +38,10 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
               <h1 className="font-display text-6xl md:text-8xl leading-[0.92]">
                 {kw && (
                   <span
-                    className="block text-brand-y whitespace-nowrap leading-none mb-1"
+                    className="block whitespace-nowrap leading-none mb-1 [text-shadow:0_1px_6px_rgba(255,255,255,0.6)]"
                     style={{ fontSize: `min(1em, calc(100cqw / ${((kw.length + 1) * 0.66).toFixed(2)}))` }}
                   >
-                    <Shyft>{kw}</Shyft>
+                    <span className="kw-blink">{kw}</span>
                     <span className="kw-glow">?</span>
                   </span>
                 )}

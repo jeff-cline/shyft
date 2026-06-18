@@ -109,3 +109,17 @@
 @media (prefers-reduced-motion: reduce) {
   .kw-glow { animation: none; color: #D4AF37; }
 }
+
+/* The dynamic keyword: black, blinking in time with the question mark */
+@keyframes kw-blink {
+  0%, 35%, 85%, 100% { opacity: 1; }
+  20% { opacity: 0.25; }
+  70% { opacity: 0.3; }
+}
+.kw-blink {
+  color: #0a0a0a;
+  animation: kw-blink 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kw-blink { animation: none; }
+}
