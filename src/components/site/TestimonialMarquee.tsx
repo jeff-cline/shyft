@@ -1,4 +1,3 @@
-import { Shyft } from "@/components/brand/Shyft";
 import { TESTIMONIALS, type Testimonial } from "./testimonials";
 
 const ACCENT_BG: Record<Testimonial["accent"], string> = {
@@ -25,11 +24,9 @@ export function TestimonialMarquee() {
     <section className="marquee py-16 bg-paper border-y border-ink/10">
       <div className="max-w-6xl mx-auto px-6 mb-10 text-center">
         <div className="font-display text-sm uppercase tracking-[0.3em] opacity-60 mb-3">
-          <Shyft>Voices From the Program</Shyft>
+          Voices From the Program
         </div>
-        <h2 className="font-display text-4xl md:text-6xl">
-          <Shyft>People who made the shYft.</Shyft>
-        </h2>
+        <h2 className="font-display text-4xl md:text-6xl">People who made the shYft.</h2>
       </div>
 
       <Row testimonials={rowA} direction="left" />
@@ -77,10 +74,10 @@ function Card({ testimonial }: { testimonial: Testimonial }) {
         &ldquo;
       </span>
       <blockquote className="text-base md:text-lg leading-snug mt-1 mb-3">
-        <Shyft>{testimonial.quote}</Shyft>
+        {testimonial.quote}
       </blockquote>
       <figcaption className="text-xs uppercase tracking-widest opacity-70">
-        <Shyft>{testimonial.attribution}</Shyft>
+        {testimonial.attribution}
       </figcaption>
     </figure>
   );
