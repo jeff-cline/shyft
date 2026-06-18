@@ -20,7 +20,7 @@ export function Logo({ variant = "small", className = "" }: LogoProps) {
   if (variant === "mark") {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={MARK} alt="shYft" className={`h-full w-auto object-contain ${className}`} />
+      <img src={MARK} alt="shYft" className={`object-contain ${className}`} />
     );
   }
   return (

@@ -18,11 +18,20 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
   return (
     <main>
       {/* HERO */}
-      <section className="relative pt-8 pb-12">
-        <div className="hero-cq max-w-4xl mx-auto px-6 text-center">
-          {/* Logo first */}
-          <div className="flex justify-center mb-4">
-            <Logo variant="hero" />
+      <section className="relative isolate overflow-hidden bg-ink text-paper">
+        {/* Background photo + dark scrim for legibility */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero-women.jpg"
+          alt="Three women at a breaking point at work"
+          className="absolute inset-0 -z-10 w-full h-full object-cover object-[center_30%]"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/80 via-ink/70 to-ink/95" />
+
+        <div className="hero-cq max-w-4xl mx-auto px-6 pt-10 pb-12 text-center">
+          {/* Gold Y-burst mark glows on the dark photo */}
+          <div className="flex justify-center mb-2">
+            <Logo variant="mark" className="h-32 md:h-44 w-auto" />
           </div>
 
           {/* Premium headline */}
@@ -37,26 +46,26 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
               </span>
             )}
             <span className="block text-gold-metallic">SHYFT HAPPENS!</span>
-            <span className="block text-2xl md:text-4xl text-ink/70 mt-3">Now what?</span>
+            <span className="block text-2xl md:text-4xl text-paper/85 mt-3">Now what?</span>
           </h1>
 
-          <p className="text-lg md:text-xl opacity-80 max-w-2xl mx-auto mt-6">
+          <p className="text-lg md:text-xl text-paper/85 max-w-2xl mx-auto mt-6">
             You felt it. The career, the marriage, the body, the soul — something moved.
             You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
           </p>
         </div>
 
         {/* Full-width split call-to-action bar */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-px bg-ink/10">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/15">
           <a
             href={`${DOCTOR_BASE}/book`}
-            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-y text-ink hover:bg-ink hover:text-paper transition-colors"
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-y text-ink hover:bg-paper transition-colors"
           >
             Free Breakthrough Call
           </a>
           <a
             href={`${MASTERY_BASE}/get-started`}
-            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-ink text-paper hover:bg-brand-y hover:text-ink transition-colors"
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-teal text-ink hover:bg-paper transition-colors"
           >
             I&apos;m Ready to shYft
           </a>

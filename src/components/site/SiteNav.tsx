@@ -13,7 +13,7 @@ export function SiteNav({ loginHref, homeHref = "/" }: SiteNavProps) {
       {/* ~1 inch tall; the Y-mark fills the full nav height in the upper-left */}
       <div className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
         <Link href={homeHref} aria-label="Home" className="h-full py-1.5 block">
-          <Logo variant="mark" />
+          <Logo variant="mark" className="h-full w-auto" />
         </Link>
         <nav className="flex items-center gap-6 text-sm">
           {loginHref && (
