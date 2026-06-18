@@ -18,23 +18,23 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
   return (
     <main>
       {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-ink text-paper">
-        {/* Background photo + dark scrim for legibility */}
+      <section className="relative isolate overflow-hidden text-ink">
+        {/* Background photo + light-teal wash */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/hero-women.jpg"
           alt="Three women at a breaking point at work"
           className="absolute inset-0 -z-10 w-full h-full object-cover object-[center_30%]"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/80 via-ink/70 to-ink/95" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-teal/55 via-brand-teal/45 to-brand-teal/65" />
 
         <div className="hero-cq max-w-4xl mx-auto px-6 pt-10 pb-12 text-center">
-          {/* Gold Y-burst mark glows on the dark photo */}
-          <div className="flex justify-center mb-2">
-            <Logo variant="mark" className="h-32 md:h-44 w-auto" />
+          {/* Full wordmark logo */}
+          <div className="flex justify-center mb-4">
+            <Logo variant="hero" />
           </div>
 
-          {/* Premium headline */}
+          {/* Premium headline with black glow */}
           <h1 className="font-display text-6xl md:text-8xl leading-[0.92]">
             {kw && (
               <span
@@ -46,26 +46,28 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
               </span>
             )}
             <span className="block text-gold-metallic">SHYFT HAPPENS!</span>
-            <span className="block text-2xl md:text-4xl text-paper/85 mt-3">Now what?</span>
+            <span className="block text-2xl md:text-4xl text-ink mt-3 [text-shadow:0_1px_6px_rgba(255,255,255,0.6)]">
+              Now what?
+            </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-paper/85 max-w-2xl mx-auto mt-6">
+          <p className="text-lg md:text-xl text-ink font-semibold max-w-2xl mx-auto mt-6 [text-shadow:0_1px_8px_rgba(255,255,255,0.7)]">
             You felt it. The career, the marriage, the body, the soul — something moved.
             You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
           </p>
         </div>
 
-        {/* Full-width split call-to-action bar */}
-        <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/15">
+        {/* Full-width split call-to-action bar — black & teal, gold letters */}
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/20">
           <a
             href={`${DOCTOR_BASE}/book`}
-            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-y text-ink hover:bg-paper transition-colors"
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-ink text-brand-y hover:bg-brand-y hover:text-ink transition-colors [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]"
           >
             Free Breakthrough Call
           </a>
           <a
             href={`${MASTERY_BASE}/get-started`}
-            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-teal text-ink hover:bg-paper transition-colors"
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-teal text-brand-y hover:bg-ink transition-colors [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]"
           >
             I&apos;m Ready to shYft
           </a>
@@ -85,7 +87,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
       <section className="bg-ink text-paper py-24">
         <div className="max-w-3xl mx-auto px-6 text-center space-y-6">
           <h2 className="font-display text-4xl md:text-6xl leading-tight">
-            <Shyft>You&apos;re not broken. You&apos;re becoming.</Shyft>
+            You&apos;re not broken. You&apos;re becoming.
           </h2>
           <p className="text-lg opacity-85">
             The world calls it burnout, divorce, midlife, exit, plateau, breakdown. We call it
@@ -101,7 +103,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
             What Happens on the Call
           </div>
           <h2 className="font-display text-4xl md:text-5xl">
-            <Shyft>Thirty minutes. No script.</Shyft>
+            Thirty minutes. No script.
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
@@ -112,9 +114,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
           ].map(([num, title, body]) => (
             <div key={title} className="border-l-4 border-brand-y pl-5">
               <div className="font-display text-brand-y text-3xl mb-1">{num}</div>
-              <h3 className="font-display text-2xl mb-2">
-                <Shyft>{title}</Shyft>
-              </h3>
+              <h3 className="font-display text-2xl mb-2">{title}</h3>
               <p className="opacity-80">{body}</p>
             </div>
           ))}
@@ -137,9 +137,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
           ["Moved", "You leave with one next step. Yours. Concrete. Doable today."],
         ].map(([title, body]) => (
           <div key={title}>
-            <h3 className="font-display text-3xl mb-3">
-              <Shyft>{title}</Shyft>
-            </h3>
+            <h3 className="font-display text-3xl mb-3">{title}</h3>
             <p className="opacity-75 text-lg">{body}</p>
           </div>
         ))}
@@ -149,7 +147,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
       <section className="bg-paper border-y border-ink/10 py-20">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="font-display text-4xl md:text-5xl text-center mb-10">
-            <Shyft>Honest Answers</Shyft>
+            Honest Answers
           </h2>
           <div className="space-y-4">
             <Faq
@@ -173,22 +171,27 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
       </section>
 
       {/* FINAL CTA */}
-      <section className="bg-ink text-paper py-24">
-        <div className="max-w-3xl mx-auto px-6 text-center space-y-6">
-          <h2 className="font-display text-5xl md:text-7xl leading-tight">
-            <Shyft>One conversation away.</Shyft>
-          </h2>
+      <section className="bg-ink text-paper pt-24">
+        <div className="max-w-3xl mx-auto px-6 text-center space-y-6 pb-12">
+          <h2 className="font-display text-5xl md:text-7xl leading-tight">One conversation away.</h2>
           <p className="text-lg opacity-85">
             Free. Thirty minutes. No script. No pitch. Pick a time that works.
           </p>
-          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-            <CTAButton href={`${DOCTOR_BASE}/book`} variant="primary">
-              Book My Free Call
-            </CTAButton>
-            <CTAButton href={`${MASTERY_BASE}/free-gifts`} variant="secondary">
-              Or — Six Free Gifts First
-            </CTAButton>
-          </div>
+        </div>
+        {/* full-width split CTA — matches the hero (black & teal, gold letters) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/20 border-t border-paper/15">
+          <a
+            href={`${DOCTOR_BASE}/book`}
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-ink text-brand-y hover:bg-brand-y hover:text-ink transition-colors [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]"
+          >
+            Book My Free Call
+          </a>
+          <a
+            href={`${MASTERY_BASE}/free-gifts`}
+            className="block text-center font-display text-xl md:text-2xl py-7 md:py-9 bg-brand-teal text-brand-y hover:bg-ink transition-colors [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]"
+          >
+            Six Free Gifts First
+          </a>
         </div>
       </section>
     </main>
@@ -198,9 +201,7 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-display text-4xl md:text-5xl text-brand-y leading-none">
-        <Shyft>{value}</Shyft>
-      </div>
+      <div className="font-display text-4xl md:text-5xl text-brand-y leading-none">{value}</div>
       <div className="text-xs uppercase tracking-widest opacity-60 mt-2">{label}</div>
     </div>
   );
@@ -210,7 +211,7 @@ function Faq({ q, a }: { q: string; a: string }) {
   return (
     <details className="border border-ink/10 rounded-md bg-paper group">
       <summary className="cursor-pointer p-4 font-display text-lg flex justify-between items-center list-none">
-        <span><Shyft>{q}</Shyft></span>
+        <span>{q}</span>
         <span className="text-brand-y text-2xl transition-transform group-open:rotate-45">+</span>
       </summary>
       <div className="px-4 pb-4 opacity-85">{a}</div>
