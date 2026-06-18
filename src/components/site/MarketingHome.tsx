@@ -27,33 +27,37 @@ export function MarketingHome({ brand, kw }: { brand: Brand; kw?: string }) {
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-teal/55 via-brand-teal/45 to-brand-teal/65" />
 
-        <div className="hero-cq max-w-4xl mx-auto px-6 pt-10 pb-12 text-center">
-          {/* Full wordmark logo */}
-          <div className="flex justify-center mb-4">
-            <Logo variant="hero" />
+        <div className="max-w-6xl mx-auto px-6 pt-4 pb-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+            {/* Logo left */}
+            <div className="flex justify-center md:justify-start">
+              <Logo variant="hero" />
+            </div>
+
+            {/* Text right */}
+            <div className="hero-cq text-center md:text-left">
+              <h1 className="font-display text-6xl md:text-8xl leading-[0.92]">
+                {kw && (
+                  <span
+                    className="block text-brand-y whitespace-nowrap leading-none mb-1"
+                    style={{ fontSize: `min(1em, calc(100cqw / ${((kw.length + 1) * 0.66).toFixed(2)}))` }}
+                  >
+                    <Shyft>{kw}</Shyft>
+                    <span className="kw-glow">?</span>
+                  </span>
+                )}
+                <span className="block text-gold-metallic">SHYFT HAPPENS!</span>
+                <span className="block text-2xl md:text-4xl text-ink mt-3 [text-shadow:0_1px_6px_rgba(255,255,255,0.6)]">
+                  Now what?
+                </span>
+              </h1>
+
+              <p className="text-lg md:text-xl text-ink font-semibold max-w-xl mx-auto md:mx-0 mt-6 [text-shadow:0_1px_8px_rgba(255,255,255,0.7)]">
+                You felt it. The career, the marriage, the body, the soul — something moved.
+                You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
+              </p>
+            </div>
           </div>
-
-          {/* Premium headline with black glow */}
-          <h1 className="font-display text-6xl md:text-8xl leading-[0.92]">
-            {kw && (
-              <span
-                className="block text-brand-y whitespace-nowrap leading-none mb-1"
-                style={{ fontSize: `min(1em, calc(100cqw / ${((kw.length + 1) * 0.66).toFixed(2)}))` }}
-              >
-                <Shyft>{kw}</Shyft>
-                <span className="kw-glow">?</span>
-              </span>
-            )}
-            <span className="block text-gold-metallic">SHYFT HAPPENS!</span>
-            <span className="block text-2xl md:text-4xl text-ink mt-3 [text-shadow:0_1px_6px_rgba(255,255,255,0.6)]">
-              Now what?
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-ink font-semibold max-w-2xl mx-auto mt-6 [text-shadow:0_1px_8px_rgba(255,255,255,0.7)]">
-            You felt it. The career, the marriage, the body, the soul — something moved.
-            You&apos;re not lost. You&apos;re between chapters. The next one starts with you.
-          </p>
         </div>
 
         {/* Full-width split call-to-action bar — black & teal, gold letters */}
